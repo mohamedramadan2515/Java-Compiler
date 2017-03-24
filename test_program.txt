@@ -1,0 +1,2 @@
+int sum,count,pass,mnt;?while(pass!=10&&pass<=100)
+{pass=pass+1;pass++; int x = 5 + 6;}
