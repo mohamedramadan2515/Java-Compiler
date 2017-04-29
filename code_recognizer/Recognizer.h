@@ -14,19 +14,20 @@
 
 class Recognizer {
 public:
-    Recognizer(Node *start, map<int, string> *typeMapping) {
+    Recognizer(Node *start, map<int, string> *typeMapping, istream &in) : in(in) {
         this->typeMapping = typeMapping;
         this->start = start;
     }
 
-    void recognize(ostream &out, istream &in);
+    void recognize(ostream &out);
 
+    vector<pair<string, string>> symbolTable;
 private:
     map<int, string> *typeMapping;
-    Node *start;;
+    Node *start;
+    istream &in;
 
-
-    void recognizeToken(string token, ostream &out);
+    string recognizeToken(string token);
 
     void reset(int &lastAcceptedIdx, int &lastAcceptedType, int &lastStart, int &currentIdx, Node *&current) const;
 };

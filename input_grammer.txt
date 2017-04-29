@@ -10,5 +10,3 @@ assign: =
 [; , \( \) { }]
 addop: \+ | -
 mulop: \* | /
-inc: \+\+
-bool: &&

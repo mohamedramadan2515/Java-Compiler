@@ -2,6 +2,7 @@
 // Created by Admin on 3/22/2017.
 //
 
+#include <iostream>
 #include "TableGenerator.h"
 
 void TableGenerator::printTable(ostream &out) {
@@ -16,7 +17,7 @@ void TableGenerator::printTable(ostream &out) {
         out << s->getUid() << " ";
         if (s->getNode()->isIsAccepted()) {
             out << s->getNode()->getType() << " ";
-        }else{
+        } else {
             out << "- ";
         }
         for (char c : *allPossibleInputs) {
@@ -54,6 +55,7 @@ void TableGenerator::printNode(Node *node, ostream &out) {
 
 void TableGenerator::printTableWithNode(ostream &out, set<int> *vis, Node *current) {
     vis->insert(current->getUid());
+    cnt++;
     printNode(current, out);
     for (auto p : *current->getNext()) {
         vector<Node *> nxt = p.second;
@@ -75,4 +77,6 @@ void TableGenerator::printMinimizedTable(ostream &out) {
     out << "\n";
     set<int> vis;
     printTableWithNode(out, &vis, start);
+
+    cout << "number of states : " << cnt;
 }

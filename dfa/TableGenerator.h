@@ -22,6 +22,8 @@ private:
 
     void printNode(Node *node, ostream &out);
 
+    int cnt = 0;
+
 public:
 
     TableGenerator(vector<State *> *taken, set<char> *allPossibleInputs) {

@@ -3,7 +3,6 @@
 //
 
 #include <cctype>
-#include <cstring>
 #include <string>
 #include "string_utils.h"
 
@@ -13,4 +12,24 @@ string trim(string &str) {
         return "";
     size_t last = str.find_last_not_of(' ');
     return str.substr(first, (last - first + 1));
+}
+
+vector<string> *splitOver(string str, char c) {
+    int idx = 0;
+    vector<string> *tokens = new vector<string>();
+    while(idx < str.size()){
+        string s = "";
+        while(idx < str.size() && str[idx] != c){
+            s += str[idx];
+            if(str[idx] == '\\' && idx+1 < str.size()){
+                idx++;
+                s += str[idx];
+            }
+            idx++;
+        }
+        if(s.size())
+            tokens->push_back(s);
+        idx++;
+    }
+    return tokens;
 }

@@ -10,6 +10,9 @@
 #include "dfa/TableGenerator.h"
 #include "minimizer/DFAMinimizer.h"
 #include "code_recognizer/Recognizer.h"
+#include "ProdRules/ProdRulesParser.h"
+#include "ProdRules/ProdEngine.h"
+#include "language_validation/Generator.h"
 
 using namespace std;
 
@@ -38,68 +41,46 @@ void dfs(Node current, set<int> &vis) {
 }
 
 int main() {
-//    Node *n = new Node(false);
-//    n->addNext('a', *new Node(true));
-//    cout << "hello";
-//    vector<Node> *x = n->getNext('a');
-//    cout << x->size();
-//
-//    AutomataBuilder *b = new AutomataBuilder();
-//    b->build("C:\\Users\\Admin\\ClionProjects\\CompilerPhase1\\input_grammer.txt");
-//    string g = "   dhr  ";
-//    g = trim(g);
-//    cout << g;
-//
-//    string l = substitute("id: letter (letter|digit)*", "letter", "a-z | A-Z");
-//    cout << l << endl;
-//
-//    cout << handleRanges("a-z|A-Z|0-9") << endl;
-//
-//    string line = "digit=0-9";
-//    unsigned int idx = line.find('=');
-//    string operand = line.substr(0, idx);
-//    operand = trim(operand);
-//    string val = line.substr(idx + 1);
-//    val = trim(val);
-//    cout << operand << endl << val << endl;
-//
-//    cout << infixToPostfix("(\\\\|\\\\)*(abc)(de)") << "h" << endl;
-
     AutomataBuilder *b = new AutomataBuilder();
-    Automata *a = b->build("C:\\\\Users\\\\Admin\\\\ClionProjects\\\\CompilerPhase1\\\\input_grammer.txt");
-//    set<int> vis;
-//    cout << a->start->getUid() << " " << a->end->getUid() << endl;
-//    dfs(*a->start, vis);
-
-//    for (auto e : *b->getAllPossibleInputs()) {
-//        cout << e << endl;
-//    }
-//    Automata *first = new Automata('a');
-//    Automata *second = new Automata('b');
-//    Automata *third = new Automata('c');
-//    first = first->concat(*second);
-//    first = first->concat(*third);
-//    dfs(*first->start, vis);
-//    cout << Node::getType() << endl;
-//    cout << Node::getType() << endl;
-
+    Automata *a = b->build("C:\\CompilerPhase1\\input_grammer.txt");
     DFABuilder *builder = new DFABuilder(a, b->getAllPossibleInputs());
     Node *start = builder->buildDFA();
-//    cout << start->getUid() << endl;
-//    TableGenerator *tableGenerator = new TableGenerator(builder->getTaken(), b->getAllPossibleInputs());
-//    tableGenerator->printTable(cout);
     DFAMinimizer *dfaMinimizer = new DFAMinimizer(start, b->getAllPossibleInputs());
     Node *startMinimized = dfaMinimizer->minimizeDFA();
     TableGenerator *tableGenerator1 = new TableGenerator(startMinimized, b->getAllPossibleInputs());
     ofstream file_out;
-    file_out.open("C:\\Users\\Admin\\ClionProjects\\CompilerPhase1\\minimized_table");
+    file_out.open("C:\\CompilerPhase1\\minimized_table");
     tableGenerator1->printMinimizedTable(file_out);
-    Recognizer *recognizer = new Recognizer(startMinimized, b->getTypeMapping());
     ifstream myfile;
-    myfile.open("C:\\Users\\Admin\\ClionProjects\\CompilerPhase1\\test_program.txt");
+    myfile.open("C:\\CompilerPhase1\\test_program.txt");
+    Recognizer *recognizer = new Recognizer(startMinimized, b->getTypeMapping(), myfile);
 
     ofstream output_file;
-    output_file.open("C:\\Users\\Admin\\ClionProjects\\CompilerPhase1\\lexical_output");
-    recognizer->recognize(output_file, myfile);
+    output_file.open("C:\\CompilerPhase1\\lexical_output");
+    recognizer->recognize(output_file);
+    output_file << "$\n";
+    output_file << flush;
+    ofstream symbol_table_file;
+    symbol_table_file.open("C:\\CompilerPhase1\\symbol_table.txt");
+
+    for (auto symbol: recognizer->symbolTable) {
+        symbol_table_file << symbol.first << "\t" << symbol.second << endl;
+    }
+
+//    ProdRulesParser *parser = new ProdRulesParser("C:\\CompilerPhase1\\phase2.txt");
+//    parser->parse();
+//    cout<< "NonTerminals:\n";
+//    for(NonTerminal* t : *(parser->getNonTerminals())){
+//        cout << t->getName() << "\n";
+//        vector<Expression*> v = t->getExp();
+//        for(Expression* e : v){
+//            for(ProdOperand* p : e->getExp()){
+//                cout << p->getName() << " " ;
+//            }
+//            cout << "\n";
+//        }
+//    }
+    Generator* generator = new Generator("C:\\CompilerPhase1\\lexical_output");
+    generator->generate();
     return 0;
 }

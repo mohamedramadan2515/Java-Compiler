@@ -2,17 +2,21 @@
 // Created by Admin on 3/24/2017.
 //
 
+#include <sstream>
 #include "Recognizer.h"
 #include "../utils/Constants.h"
 
-void Recognizer::recognize(ostream &out, istream &in) {
+void Recognizer::recognize(ostream &out) {
     string token;
+
     while (in >> token) {
-        recognizeToken(token, out);
+        string tmp = recognizeToken(token);
+        out << tmp;
     }
 }
 
-void Recognizer::recognizeToken(string token, ostream &out) {
+string Recognizer::recognizeToken(string token) {
+    stringstream out;
     int lastAcceptedIdx = -1;//idx in token
     int lastAcceptedType = -1;//type of last accepted
     int lastStart = 0;
@@ -30,10 +34,17 @@ void Recognizer::recognizeToken(string token, ostream &out) {
             } else if (lastAcceptedType == Constants::KEY_WORD || lastAcceptedType == Constants::PUNC) {
                 string sub = token.substr(lastStart, lastAcceptedIdx - lastStart + 1);
                 out << sub << " " << endl;
+                if(lastAcceptedType == Constants::PUNC){
+                    symbolTable.push_back({sub, "Punc"});
+                }else{
+                    symbolTable.push_back({sub, "Keyword"});
+                }
                 reset(lastAcceptedIdx, lastAcceptedType, lastStart, currentIdx, current);
             } else {
+                string sub = token.substr(lastStart, lastAcceptedIdx - lastStart + 1);
                 string type = (*typeMapping)[lastAcceptedType];
                 out << type << " " << endl;
+                symbolTable.push_back({sub, type});
                 reset(lastAcceptedIdx, lastAcceptedType, lastStart, currentIdx, current);
             }
         } else {
@@ -55,12 +66,20 @@ void Recognizer::recognizeToken(string token, ostream &out) {
     } else if (lastAcceptedType == Constants::KEY_WORD || lastAcceptedType == Constants::PUNC) {
         string sub = token.substr(lastStart, lastAcceptedIdx - lastStart + 1);
         out << sub << " " << endl;
+        if(lastAcceptedType == Constants::PUNC){
+            symbolTable.push_back({sub, "Punc"});
+        }else{
+            symbolTable.push_back({sub, "Keyword"});
+        }
         reset(lastAcceptedIdx, lastAcceptedType, lastStart, currentIdx, current);
     } else {
+        string sub = token.substr(lastStart, lastAcceptedIdx - lastStart + 1);
         string type = (*typeMapping)[lastAcceptedType];
         out << type << " " << endl;
+        symbolTable.push_back({sub, type});
         reset(lastAcceptedIdx, lastAcceptedType, lastStart, currentIdx, current);
     }
+    return out.str();
 }
 
 void
