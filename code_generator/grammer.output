@@ -1,0 +1,783 @@
+Terminals unused in grammar
+
+   COMMA
+   MOD
+   OR
+   AND
+
+
+State 51 conflicts: 4 shift/reduce
+
+
+Grammar
+
+    0 $accept: METHOD_BODY $end
+
+    1 METHOD_BODY: STATEMENT_LIST LABEL
+
+    2 STATEMENT_LIST: STATEMENT
+    3               | STATEMENT LABEL STATEMENT_LIST
+
+    4 STATEMENT: DECLARATION
+    5          | IF
+    6          | WHILE
+    7          | ASSIGNMENT
+
+    8 DECLARATION: PRIMITIVE_TYPE IDENTIFIER SIMI_COLON
+
+    9 PRIMITIVE_TYPE: int_T
+   10               | boolean_T
+   11               | float_T
+
+   12 GOTO: %empty
+
+   13 LABEL: %empty
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+   16 ASSIGNMENT: IDENTIFIER ASSIGN EXPRESSION SIMI_COLON
+
+   17 EXPRESSION: INTEGER
+   18           | REAL
+   19           | EXPRESSION INFIX_OPERATOR EXPRESSION
+   20           | IDENTIFIER
+   21           | OPEN_PRAN EXPRESSION CLOSE_PRAN
+
+   22 INFIX_OPERATOR: PLUSE
+   23               | MINUS
+   24               | MUL
+   25               | DIV
+
+   26 BOOLEAN_OPERATOR: GREATER_THAN
+   27                 | LESS_THAN
+   28                 | GREATER_THAN_EQUAL
+   29                 | EQUAL
+   30                 | NOT_EQUAL
+   31                 | LESS_THAN_EQUAL
+
+   32 BOOLEAN_EXPRESSION: TRUE
+   33                   | FALSE
+   34                   | EXPRESSION BOOLEAN_OPERATOR EXPRESSION
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+SIMI_COLON (258) 8 16
+OPEN_PRAN (259) 14 15 21
+CLOSE_PRAN (260) 14 15 21
+COMMA (261)
+TRUE (262) 32
+FALSE (263) 33
+CLOSE_BRACE (264) 14 15
+OPEN_BRACE (265) 14 15
+if_T (266) 14
+else_T (267) 14
+while_T (268) 15
+boolean_T (269) 10
+int_T (270) 9
+float_T (271) 11
+MOD (272)
+OR (273)
+AND (274)
+ASSIGN (275) 16
+IDENTIFIER (276) 8 16 20
+INTEGER (277) 17
+REAL (278) 18
+PLUSE (279) 22
+MINUS (280) 23
+MUL (281) 24
+DIV (282) 25
+GREATER_THAN (283) 26
+LESS_THAN (284) 27
+GREATER_THAN_EQUAL (285) 28
+EQUAL (286) 29
+NOT_EQUAL (287) 30
+LESS_THAN_EQUAL (288) 31
+
+
+Nonterminals, with rules where they appear
+
+$accept (34)
+    on left: 0
+METHOD_BODY (35)
+    on left: 1, on right: 0
+STATEMENT_LIST (36)
+    on left: 2 3, on right: 1 3 14 15
+STATEMENT (37)
+    on left: 4 5 6 7, on right: 2 3
+DECLARATION (38)
+    on left: 8, on right: 4
+PRIMITIVE_TYPE (39)
+    on left: 9 10 11, on right: 8
+GOTO (40)
+    on left: 12, on right: 14
+LABEL (41)
+    on left: 13, on right: 1 3 14 15
+IF (42)
+    on left: 14, on right: 5
+WHILE (43)
+    on left: 15, on right: 6
+ASSIGNMENT (44)
+    on left: 16, on right: 7
+EXPRESSION (45)
+    on left: 17 18 19 20 21, on right: 16 19 21 34
+INFIX_OPERATOR (46)
+    on left: 22 23 24 25, on right: 19
+BOOLEAN_OPERATOR (47)
+    on left: 26 27 28 29 30 31, on right: 34
+BOOLEAN_EXPRESSION (48)
+    on left: 32 33 34, on right: 14 15
+
+
+State 0
+
+    0 $accept: . METHOD_BODY $end
+
+    if_T        shift, and go to state 1
+    boolean_T   shift, and go to state 2
+    int_T       shift, and go to state 3
+    float_T     shift, and go to state 4
+    IDENTIFIER  shift, and go to state 5
+
+    $default  reduce using rule 13 (LABEL)
+
+    METHOD_BODY     go to state 6
+    STATEMENT_LIST  go to state 7
+    STATEMENT       go to state 8
+    DECLARATION     go to state 9
+    PRIMITIVE_TYPE  go to state 10
+    LABEL           go to state 11
+    IF              go to state 12
+    WHILE           go to state 13
+    ASSIGNMENT      go to state 14
+
+
+State 1
+
+   14 IF: if_T . OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_PRAN  shift, and go to state 15
+
+
+State 2
+
+   10 PRIMITIVE_TYPE: boolean_T .
+
+    $default  reduce using rule 10 (PRIMITIVE_TYPE)
+
+
+State 3
+
+    9 PRIMITIVE_TYPE: int_T .
+
+    $default  reduce using rule 9 (PRIMITIVE_TYPE)
+
+
+State 4
+
+   11 PRIMITIVE_TYPE: float_T .
+
+    $default  reduce using rule 11 (PRIMITIVE_TYPE)
+
+
+State 5
+
+   16 ASSIGNMENT: IDENTIFIER . ASSIGN EXPRESSION SIMI_COLON
+
+    ASSIGN  shift, and go to state 16
+
+
+State 6
+
+    0 $accept: METHOD_BODY . $end
+
+    $end  shift, and go to state 17
+
+
+State 7
+
+    1 METHOD_BODY: STATEMENT_LIST . LABEL
+
+    $default  reduce using rule 13 (LABEL)
+
+    LABEL  go to state 18
+
+
+State 8
+
+    2 STATEMENT_LIST: STATEMENT .
+    3               | STATEMENT . LABEL STATEMENT_LIST
+
+    $end         reduce using rule 2 (STATEMENT_LIST)
+    CLOSE_BRACE  reduce using rule 2 (STATEMENT_LIST)
+    $default     reduce using rule 13 (LABEL)
+
+    LABEL  go to state 19
+
+
+State 9
+
+    4 STATEMENT: DECLARATION .
+
+    $default  reduce using rule 4 (STATEMENT)
+
+
+State 10
+
+    8 DECLARATION: PRIMITIVE_TYPE . IDENTIFIER SIMI_COLON
+
+    IDENTIFIER  shift, and go to state 20
+
+
+State 11
+
+   15 WHILE: LABEL . while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    while_T  shift, and go to state 21
+
+
+State 12
+
+    5 STATEMENT: IF .
+
+    $default  reduce using rule 5 (STATEMENT)
+
+
+State 13
+
+    6 STATEMENT: WHILE .
+
+    $default  reduce using rule 6 (STATEMENT)
+
+
+State 14
+
+    7 STATEMENT: ASSIGNMENT .
+
+    $default  reduce using rule 7 (STATEMENT)
+
+
+State 15
+
+   14 IF: if_T OPEN_PRAN . BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_PRAN   shift, and go to state 22
+    TRUE        shift, and go to state 23
+    FALSE       shift, and go to state 24
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION          go to state 28
+    BOOLEAN_EXPRESSION  go to state 29
+
+
+State 16
+
+   16 ASSIGNMENT: IDENTIFIER ASSIGN . EXPRESSION SIMI_COLON
+
+    OPEN_PRAN   shift, and go to state 22
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION  go to state 30
+
+
+State 17
+
+    0 $accept: METHOD_BODY $end .
+
+    $default  accept
+
+
+State 18
+
+    1 METHOD_BODY: STATEMENT_LIST LABEL .
+
+    $default  reduce using rule 1 (METHOD_BODY)
+
+
+State 19
+
+    3 STATEMENT_LIST: STATEMENT LABEL . STATEMENT_LIST
+
+    if_T        shift, and go to state 1
+    boolean_T   shift, and go to state 2
+    int_T       shift, and go to state 3
+    float_T     shift, and go to state 4
+    IDENTIFIER  shift, and go to state 5
+
+    $default  reduce using rule 13 (LABEL)
+
+    STATEMENT_LIST  go to state 31
+    STATEMENT       go to state 8
+    DECLARATION     go to state 9
+    PRIMITIVE_TYPE  go to state 10
+    LABEL           go to state 11
+    IF              go to state 12
+    WHILE           go to state 13
+    ASSIGNMENT      go to state 14
+
+
+State 20
+
+    8 DECLARATION: PRIMITIVE_TYPE IDENTIFIER . SIMI_COLON
+
+    SIMI_COLON  shift, and go to state 32
+
+
+State 21
+
+   15 WHILE: LABEL while_T . OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_PRAN  shift, and go to state 33
+
+
+State 22
+
+   21 EXPRESSION: OPEN_PRAN . EXPRESSION CLOSE_PRAN
+
+    OPEN_PRAN   shift, and go to state 22
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION  go to state 34
+
+
+State 23
+
+   32 BOOLEAN_EXPRESSION: TRUE .
+
+    $default  reduce using rule 32 (BOOLEAN_EXPRESSION)
+
+
+State 24
+
+   33 BOOLEAN_EXPRESSION: FALSE .
+
+    $default  reduce using rule 33 (BOOLEAN_EXPRESSION)
+
+
+State 25
+
+   20 EXPRESSION: IDENTIFIER .
+
+    $default  reduce using rule 20 (EXPRESSION)
+
+
+State 26
+
+   17 EXPRESSION: INTEGER .
+
+    $default  reduce using rule 17 (EXPRESSION)
+
+
+State 27
+
+   18 EXPRESSION: REAL .
+
+    $default  reduce using rule 18 (EXPRESSION)
+
+
+State 28
+
+   19 EXPRESSION: EXPRESSION . INFIX_OPERATOR EXPRESSION
+   34 BOOLEAN_EXPRESSION: EXPRESSION . BOOLEAN_OPERATOR EXPRESSION
+
+    PLUSE               shift, and go to state 35
+    MINUS               shift, and go to state 36
+    MUL                 shift, and go to state 37
+    DIV                 shift, and go to state 38
+    GREATER_THAN        shift, and go to state 39
+    LESS_THAN           shift, and go to state 40
+    GREATER_THAN_EQUAL  shift, and go to state 41
+    EQUAL               shift, and go to state 42
+    NOT_EQUAL           shift, and go to state 43
+    LESS_THAN_EQUAL     shift, and go to state 44
+
+    INFIX_OPERATOR    go to state 45
+    BOOLEAN_OPERATOR  go to state 46
+
+
+State 29
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION . CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    CLOSE_PRAN  shift, and go to state 47
+
+
+State 30
+
+   16 ASSIGNMENT: IDENTIFIER ASSIGN EXPRESSION . SIMI_COLON
+   19 EXPRESSION: EXPRESSION . INFIX_OPERATOR EXPRESSION
+
+    SIMI_COLON  shift, and go to state 48
+    PLUSE       shift, and go to state 35
+    MINUS       shift, and go to state 36
+    MUL         shift, and go to state 37
+    DIV         shift, and go to state 38
+
+    INFIX_OPERATOR  go to state 45
+
+
+State 31
+
+    3 STATEMENT_LIST: STATEMENT LABEL STATEMENT_LIST .
+
+    $default  reduce using rule 3 (STATEMENT_LIST)
+
+
+State 32
+
+    8 DECLARATION: PRIMITIVE_TYPE IDENTIFIER SIMI_COLON .
+
+    $default  reduce using rule 8 (DECLARATION)
+
+
+State 33
+
+   15 WHILE: LABEL while_T OPEN_PRAN . BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_PRAN   shift, and go to state 22
+    TRUE        shift, and go to state 23
+    FALSE       shift, and go to state 24
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION          go to state 28
+    BOOLEAN_EXPRESSION  go to state 49
+
+
+State 34
+
+   19 EXPRESSION: EXPRESSION . INFIX_OPERATOR EXPRESSION
+   21           | OPEN_PRAN EXPRESSION . CLOSE_PRAN
+
+    CLOSE_PRAN  shift, and go to state 50
+    PLUSE       shift, and go to state 35
+    MINUS       shift, and go to state 36
+    MUL         shift, and go to state 37
+    DIV         shift, and go to state 38
+
+    INFIX_OPERATOR  go to state 45
+
+
+State 35
+
+   22 INFIX_OPERATOR: PLUSE .
+
+    $default  reduce using rule 22 (INFIX_OPERATOR)
+
+
+State 36
+
+   23 INFIX_OPERATOR: MINUS .
+
+    $default  reduce using rule 23 (INFIX_OPERATOR)
+
+
+State 37
+
+   24 INFIX_OPERATOR: MUL .
+
+    $default  reduce using rule 24 (INFIX_OPERATOR)
+
+
+State 38
+
+   25 INFIX_OPERATOR: DIV .
+
+    $default  reduce using rule 25 (INFIX_OPERATOR)
+
+
+State 39
+
+   26 BOOLEAN_OPERATOR: GREATER_THAN .
+
+    $default  reduce using rule 26 (BOOLEAN_OPERATOR)
+
+
+State 40
+
+   27 BOOLEAN_OPERATOR: LESS_THAN .
+
+    $default  reduce using rule 27 (BOOLEAN_OPERATOR)
+
+
+State 41
+
+   28 BOOLEAN_OPERATOR: GREATER_THAN_EQUAL .
+
+    $default  reduce using rule 28 (BOOLEAN_OPERATOR)
+
+
+State 42
+
+   29 BOOLEAN_OPERATOR: EQUAL .
+
+    $default  reduce using rule 29 (BOOLEAN_OPERATOR)
+
+
+State 43
+
+   30 BOOLEAN_OPERATOR: NOT_EQUAL .
+
+    $default  reduce using rule 30 (BOOLEAN_OPERATOR)
+
+
+State 44
+
+   31 BOOLEAN_OPERATOR: LESS_THAN_EQUAL .
+
+    $default  reduce using rule 31 (BOOLEAN_OPERATOR)
+
+
+State 45
+
+   19 EXPRESSION: EXPRESSION INFIX_OPERATOR . EXPRESSION
+
+    OPEN_PRAN   shift, and go to state 22
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION  go to state 51
+
+
+State 46
+
+   34 BOOLEAN_EXPRESSION: EXPRESSION BOOLEAN_OPERATOR . EXPRESSION
+
+    OPEN_PRAN   shift, and go to state 22
+    IDENTIFIER  shift, and go to state 25
+    INTEGER     shift, and go to state 26
+    REAL        shift, and go to state 27
+
+    EXPRESSION  go to state 52
+
+
+State 47
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN . OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_BRACE  shift, and go to state 53
+
+
+State 48
+
+   16 ASSIGNMENT: IDENTIFIER ASSIGN EXPRESSION SIMI_COLON .
+
+    $default  reduce using rule 16 (ASSIGNMENT)
+
+
+State 49
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION . CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    CLOSE_PRAN  shift, and go to state 54
+
+
+State 50
+
+   21 EXPRESSION: OPEN_PRAN EXPRESSION CLOSE_PRAN .
+
+    $default  reduce using rule 21 (EXPRESSION)
+
+
+State 51
+
+   19 EXPRESSION: EXPRESSION . INFIX_OPERATOR EXPRESSION
+   19           | EXPRESSION INFIX_OPERATOR EXPRESSION .
+
+    PLUSE  shift, and go to state 35
+    MINUS  shift, and go to state 36
+    MUL    shift, and go to state 37
+    DIV    shift, and go to state 38
+
+    PLUSE     [reduce using rule 19 (EXPRESSION)]
+    MINUS     [reduce using rule 19 (EXPRESSION)]
+    MUL       [reduce using rule 19 (EXPRESSION)]
+    DIV       [reduce using rule 19 (EXPRESSION)]
+    $default  reduce using rule 19 (EXPRESSION)
+
+    INFIX_OPERATOR  go to state 45
+
+
+State 52
+
+   19 EXPRESSION: EXPRESSION . INFIX_OPERATOR EXPRESSION
+   34 BOOLEAN_EXPRESSION: EXPRESSION BOOLEAN_OPERATOR EXPRESSION .
+
+    PLUSE  shift, and go to state 35
+    MINUS  shift, and go to state 36
+    MUL    shift, and go to state 37
+    DIV    shift, and go to state 38
+
+    $default  reduce using rule 34 (BOOLEAN_EXPRESSION)
+
+    INFIX_OPERATOR  go to state 45
+
+
+State 53
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE . LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    $default  reduce using rule 13 (LABEL)
+
+    LABEL  go to state 55
+
+
+State 54
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN . OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_BRACE  shift, and go to state 56
+
+
+State 55
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL . STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    if_T        shift, and go to state 1
+    boolean_T   shift, and go to state 2
+    int_T       shift, and go to state 3
+    float_T     shift, and go to state 4
+    IDENTIFIER  shift, and go to state 5
+
+    $default  reduce using rule 13 (LABEL)
+
+    STATEMENT_LIST  go to state 57
+    STATEMENT       go to state 8
+    DECLARATION     go to state 9
+    PRIMITIVE_TYPE  go to state 10
+    LABEL           go to state 11
+    IF              go to state 12
+    WHILE           go to state 13
+    ASSIGNMENT      go to state 14
+
+
+State 56
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE . LABEL STATEMENT_LIST CLOSE_BRACE
+
+    $default  reduce using rule 13 (LABEL)
+
+    LABEL  go to state 58
+
+
+State 57
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST . GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    $default  reduce using rule 12 (GOTO)
+
+    GOTO  go to state 59
+
+
+State 58
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL . STATEMENT_LIST CLOSE_BRACE
+
+    if_T        shift, and go to state 1
+    boolean_T   shift, and go to state 2
+    int_T       shift, and go to state 3
+    float_T     shift, and go to state 4
+    IDENTIFIER  shift, and go to state 5
+
+    $default  reduce using rule 13 (LABEL)
+
+    STATEMENT_LIST  go to state 60
+    STATEMENT       go to state 8
+    DECLARATION     go to state 9
+    PRIMITIVE_TYPE  go to state 10
+    LABEL           go to state 11
+    IF              go to state 12
+    WHILE           go to state 13
+    ASSIGNMENT      go to state 14
+
+
+State 59
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO . CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    CLOSE_BRACE  shift, and go to state 61
+
+
+State 60
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST . CLOSE_BRACE
+
+    CLOSE_BRACE  shift, and go to state 62
+
+
+State 61
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE . else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    else_T  shift, and go to state 63
+
+
+State 62
+
+   15 WHILE: LABEL while_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE .
+
+    $default  reduce using rule 15 (WHILE)
+
+
+State 63
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T . OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE
+
+    OPEN_BRACE  shift, and go to state 64
+
+
+State 64
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE . LABEL STATEMENT_LIST CLOSE_BRACE
+
+    $default  reduce using rule 13 (LABEL)
+
+    LABEL  go to state 65
+
+
+State 65
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL . STATEMENT_LIST CLOSE_BRACE
+
+    if_T        shift, and go to state 1
+    boolean_T   shift, and go to state 2
+    int_T       shift, and go to state 3
+    float_T     shift, and go to state 4
+    IDENTIFIER  shift, and go to state 5
+
+    $default  reduce using rule 13 (LABEL)
+
+    STATEMENT_LIST  go to state 66
+    STATEMENT       go to state 8
+    DECLARATION     go to state 9
+    PRIMITIVE_TYPE  go to state 10
+    LABEL           go to state 11
+    IF              go to state 12
+    WHILE           go to state 13
+    ASSIGNMENT      go to state 14
+
+
+State 66
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST . CLOSE_BRACE
+
+    CLOSE_BRACE  shift, and go to state 67
+
+
+State 67
+
+   14 IF: if_T OPEN_PRAN BOOLEAN_EXPRESSION CLOSE_PRAN OPEN_BRACE LABEL STATEMENT_LIST GOTO CLOSE_BRACE else_T OPEN_BRACE LABEL STATEMENT_LIST CLOSE_BRACE .
+
+    $default  reduce using rule 14 (IF)
