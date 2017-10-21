@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "DFABuilder.h"
+#include "DFABuilder.hpp"
 
 set<int> *DFABuilder::getNodeIds(char c, Node *node) {
     set<int> *res = new set<int>();

@@ -5,7 +5,7 @@
 #ifndef COMPILERPHASE1_TERMINAL_H
 #define COMPILERPHASE1_TERMINAL_H
 
-#include "ProdOperand.h"
+#include "ProdOperand.hpp"
 #include <vector>
 
 using namespace std;

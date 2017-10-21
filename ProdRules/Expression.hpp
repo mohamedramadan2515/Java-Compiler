@@ -7,8 +7,8 @@
 
 #include <bits/stdc++.h>
 #include <vector>
-#include "ProdOperand.h"
-#include "Terminal.h"
+#include "ProdOperand.hpp"
+#include "Terminal.hpp"
 
 
 

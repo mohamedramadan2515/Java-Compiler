@@ -4,7 +4,7 @@
 
 #include <cctype>
 #include <string>
-#include "string_utils.h"
+#include "string_utils.hpp"
 
 string trim(string &str) {
     size_t first = str.find_first_not_of(' ');

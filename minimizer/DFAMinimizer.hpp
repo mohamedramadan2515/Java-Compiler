@@ -8,8 +8,8 @@
 
 #include <map>
 #include <string>
-#include "../automata/Node.h"
-#include "PartitionSet.h"
+#include "../automata/Node.hpp"
+#include "PartitionSet.hpp"
 
 class DFAMinimizer {
 

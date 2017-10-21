@@ -10,7 +10,7 @@
 #include <map>
 #include <ostream>
 #include <istream>
-#include "../automata/Node.h"
+#include "../automata/Node.hpp"
 
 class Recognizer {
 public:

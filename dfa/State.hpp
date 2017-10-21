@@ -7,7 +7,7 @@
 
 #include <set>
 #include <limits.h>
-#include "../automata/Node.h"
+#include "../automata/Node.hpp"
 
 using namespace std;
 

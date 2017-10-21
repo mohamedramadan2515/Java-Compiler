@@ -8,7 +8,17 @@
 #include <string>
 #include <map>
 #include <set>
-#include "../automata/Automata.h"
+#include <fstream>
+#include <iostream>
+#include <ctype.h>
+#include <sstream>
+#include <algorithm>
+#include <assert.h>
+#include <stack>
+#include "../utils/string_utils.hpp"
+#include "../automata/EmptyAutomata.hpp"
+#include "../utils/Constants.hpp"
+#include "../automata/Automata.hpp"
 
 using namespace std;
 

@@ -3,16 +3,16 @@
 #include <stack>
 #include <set>
 #include <fstream>
-#include "automata/Node.h"
-#include "parser/AutomataBuilder.h"
-#include "utils/string_utils.h"
-#include "dfa/DFABuilder.h"
-#include "dfa/TableGenerator.h"
-#include "minimizer/DFAMinimizer.h"
-#include "code_recognizer/Recognizer.h"
-#include "ProdRules/ProdRulesParser.h"
-#include "ProdRules/ProdEngine.h"
-#include "language_validation/Generator.h"
+#include "automata/Node.hpp"
+#include "parser/AutomataBuilder.hpp"
+#include "utils/string_utils.hpp"
+#include "dfa/DFABuilder.hpp"
+#include "dfa/TableGenerator.hpp"
+#include "minimizer/DFAMinimizer.hpp"
+#include "code_recognizer/Recognizer.hpp"
+#include "ProdRules/ProdRulesParser.hpp"
+#include "ProdRules/ProdEngine.hpp"
+#include "language_validation/Generator.hpp"
 
 using namespace std;
 

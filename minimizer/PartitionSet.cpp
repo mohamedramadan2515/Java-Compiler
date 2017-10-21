@@ -2,7 +2,7 @@
 // Created by Admin on 3/23/2017.
 //
 
-#include "PartitionSet.h"
+#include "PartitionSet.hpp"
 
 void PartitionSet::insertNewNodeId(int id) {
     nodesIds->insert(id);

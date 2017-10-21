@@ -3,7 +3,7 @@
 //
 
 #include <sstream>
-#include "DFAMinimizer.h"
+#include "DFAMinimizer.hpp"
 
 
 void DFAMinimizer::preProcess(Node *current, set<int> *vis, PartitionSet *finalStates, PartitionSet *nonFinalStates) {

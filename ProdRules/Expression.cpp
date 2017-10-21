@@ -2,9 +2,9 @@
 // Created by Ramadan on 4/21/2017.
 //
 
-#include "Expression.h"
-#include "NonTerminal.h"
-#include "ProdRulesParser.h"
+#include "Expression.hpp"
+#include "NonTerminal.hpp"
+#include "ProdRulesParser.hpp"
 
 void Expression::addOperand(ProdOperand *operand) {
     expression.push_back(operand);

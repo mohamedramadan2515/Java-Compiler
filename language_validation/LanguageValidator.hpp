@@ -6,8 +6,8 @@
 #define COMPILERPHASE1_LANGUAGEVALIDATOR_H
 
 #include <bits/stdc++.h>
-#include "../ProdRules/Terminal.h"
-#include "../ProdRules/NonTerminal.h"
+#include "../ProdRules/Terminal.hpp"
+#include "../ProdRules/NonTerminal.hpp"
 
 using namespace std;
 

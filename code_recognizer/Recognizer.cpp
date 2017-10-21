@@ -3,8 +3,8 @@
 //
 
 #include <sstream>
-#include "Recognizer.h"
-#include "../utils/Constants.h"
+#include "Recognizer.hpp"
+#include "../utils/Constants.hpp"
 
 void Recognizer::recognize(ostream &out) {
     string token;

@@ -2,8 +2,17 @@
 // Created by Admin on 3/21/2017.
 //
 
-#include "Node.h"
+#include "Node.hpp"
 
+Node::Node(const bool isAccepted, const int type) {
+  this->isAccepted = isAccepted;
+  this->uid = Node::getUniqueId();
+  this->type = type;
+}
+
+int Node::getUniqueId() {
+  return nextId++;
+}
 
 void Node::addEpsillon(Node *node) {
     eps.push_back(node);

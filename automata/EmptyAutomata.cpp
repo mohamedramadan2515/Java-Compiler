@@ -2,21 +2,24 @@
 // Created by Admin on 3/21/2017.
 //
 
-#include <assert.h>
-#include "EmptyAutomata.h"
+#include "EmptyAutomata.hpp"
 
-Automata *EmptyAutomata::merge(Automata &other) {
+bool EmptyAutomata::isEmptyAutomata() {
+  return true;
+}
+
+Automata* EmptyAutomata::merge(Automata &other) {
     return &other;
 }
 
-Automata *EmptyAutomata::concat(Automata &other) {
+Automata* EmptyAutomata::concat(Automata &other) {
     return &other;
 }
 
-Automata *EmptyAutomata::many() {
+Automata* EmptyAutomata::many() {
     assert(false);
 }
 
-Automata *EmptyAutomata::manyOne() {
+Automata* EmptyAutomata::manyOne() {
     assert(false);
 }

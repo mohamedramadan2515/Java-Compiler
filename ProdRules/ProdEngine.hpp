@@ -6,8 +6,8 @@
 #define COMPILERPHASE1_PRODENGINE_H
 
 #include <bits/stdc++.h>
-#include "ProdRulesParser.h"
-#include "Expression.h"
+#include "ProdRulesParser.hpp"
+#include "Expression.hpp"
 using namespace std;
 class ProdEngine {
 public:
