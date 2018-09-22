@@ -2,7 +2,7 @@
 // Created by Ramadan on 4/22/2017.
 //
 
-#include "ProdEngine.hpp"
+#include "ProdEngine.h"
 
 map<pair<NonTerminal *, Terminal *>, Expression *> *ProdEngine::getTable() {
     return table;

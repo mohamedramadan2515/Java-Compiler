@@ -2,9 +2,9 @@
 // Created by Ramadan on 4/21/2017.
 //
 
-#include "ProdRulesParser.hpp"
-#include "../utils/string_utils.hpp"
-#include "Expression.hpp"
+#include "ProdRulesParser.h"
+#include "../utils/string_utils.h"
+#include "Expression.h"
 #include <bits/stdc++.h>
 
 void ProdRulesParser::parse() {
@@ -32,7 +32,7 @@ void ProdRulesParser::handleInputLine(string line) {
     }
 }
 
-NonTerminal* ProdRulesParser::handleLHS(string &line) {
+NonTerminal *ProdRulesParser::handleLHS(string &line) {
     string nonTerminalName = "";
     int idx = 0;
     while (idx < line.size() && (line[idx] == ' ' || line[idx] == '#'))idx++;
@@ -49,7 +49,7 @@ NonTerminal* ProdRulesParser::handleLHS(string &line) {
     return LHS;
 }
 
-vector<Terminal *>* ProdRulesParser::getTerminals() {
+vector<Terminal *> *ProdRulesParser::getTerminals() {
     terminals.clear();
     for (auto it : terminalsMap) {
         terminals.push_back(it.second);
@@ -57,7 +57,7 @@ vector<Terminal *>* ProdRulesParser::getTerminals() {
     return &terminals;
 }
 
-vector<NonTerminal *>* ProdRulesParser::getNonTerminals() {
+vector<NonTerminal *> *ProdRulesParser::getNonTerminals() {
     nonTerminals.clear();
     for (auto it : nonTerminalsMap) {
         nonTerminals.push_back(it.second);
@@ -144,7 +144,7 @@ int ProdRulesParser::handleTerminal(string &expString, int idx, Expression *exp)
 Terminal* ProdRulesParser::epsilon = new Terminal("\\L");
 Terminal* ProdRulesParser::endOfExp = new Terminal("$");
 
-NonTerminal* ProdRulesParser::getStart() {
+NonTerminal *ProdRulesParser::getStart() {
     return start;
 }
 

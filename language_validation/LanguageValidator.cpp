@@ -2,10 +2,10 @@
 // Created by Ramadan on 4/24/2017.
 //
 
-#include "LanguageValidator.hpp"
-#include "../ProdRules/ProdRulesParser.hpp"
-#include "../ProdRules/Expression.hpp"
-#include "../utils/string_utils.hpp"
+#include "LanguageValidator.h"
+#include "../ProdRules/ProdRulesParser.h"
+#include "../ProdRules/Expression.h"
+#include "../utils/string_utils.h"
 void LanguageValidator::validate(ofstream &out) {
     ifstream input;
     input.open(tokensFilePath);

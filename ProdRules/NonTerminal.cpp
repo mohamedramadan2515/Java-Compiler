@@ -2,9 +2,9 @@
 // Created by Ramadan on 4/21/2017.
 //
 
-#include "NonTerminal.hpp"
-#include "Expression.hpp"
-#include "ProdRulesParser.hpp"
+#include "NonTerminal.h"
+#include "Expression.h"
+#include "ProdRulesParser.h"
 
 void NonTerminal::addExp(Expression *exp) {
     prodExps.push_back(exp);

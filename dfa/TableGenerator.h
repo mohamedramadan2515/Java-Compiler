@@ -6,7 +6,7 @@
 #define COMPILERPHASE1_TABLEGENERATOR_H
 
 #include <ostream>
-#include "State.hpp"
+#include "State.h"
 
 using namespace std;
 

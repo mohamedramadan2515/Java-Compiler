@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include <bits/stdc++.h>
-#include "Terminal.hpp"
-#include "NonTerminal.hpp"
+#include "Terminal.h"
+#include "NonTerminal.h"
 
 using namespace std;
 

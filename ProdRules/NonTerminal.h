@@ -6,9 +6,9 @@
 #define COMPILERPHASE1_NONTERMINAL_H
 
 
-#include "ProdOperand.hpp"
+#include "ProdOperand.h"
 
-#include "Terminal.hpp"
+#include "Terminal.h"
 #include <bits/stdc++.h>
 
 using namespace std;

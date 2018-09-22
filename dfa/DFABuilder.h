@@ -8,8 +8,8 @@
 
 #include <stack>
 #include <map>
-#include "../automata/Automata.hpp"
-#include "State.hpp"
+#include "../automata/Automata.h"
+#include "State.h"
 
 class DFABuilder {
 public:

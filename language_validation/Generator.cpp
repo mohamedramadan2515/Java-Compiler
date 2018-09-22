@@ -2,9 +2,9 @@
 // Created by Ramadan on 4/24/2017.
 //
 
-#include "Generator.hpp"
-#include "../ProdRules/ProdEngine.hpp"
-#include "LanguageValidator.hpp"
+#include "Generator.h"
+#include "../ProdRules/ProdEngine.h"
+#include "LanguageValidator.h"
 
 void Generator::generate() {
     ProdEngine* engine = new ProdEngine("C:\\CompilerPhase1\\phase2.txt");

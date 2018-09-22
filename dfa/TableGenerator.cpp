@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "TableGenerator.hpp"
+#include "TableGenerator.h"
 
 void TableGenerator::printTable(ostream &out) {
     out << "State  Type";
